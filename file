@@ -1,0 +1,97 @@
+"""
+Universidad Fidelitas
+Introduccion a la programacion
+Avance #2 del proyecto de programacion
+Profesora: Christy Aguero
+Integrantes
+- Aaron Ortiz Fuentes
+- Andres Martinez Perez
+- Carlos Jimenez Santos
+"""
+
+# Variables iniciales para el programa
+inventario_monitores = 500
+precio_monitor = 100
+inventraio_teclado = 700
+precio_teclados = 50
+inventario_mouses = 800
+precio_mouses = 25
+inventario_audifonos = 1000
+precios_audifonos = 20
+inventario_microfonos = 400
+precio_microfonos = 20
+
+# Valores de inicio de sesion
+usuario = "user1"
+contrasena = "contraseña"
+accesoMain = False
+intentos = 0
+
+
+# valores de menu
+
+
+# Funciones
+def inicioSesion(user, password):
+    acceso = False
+    if (user == usuario) and (password == contrasena):
+        print("Acceso concedido")
+        acceso = True
+    else:
+        print("Valores incorrectos, intente nuevamente")
+    return acceso
+
+
+def menu(opcion_menu):
+    if opcion_menu == 1:
+        print('Estas en el menu de monitores')
+        cantidad_monitores = int(input('Cuantos monitores deseas comprar?'))
+        return cantidad_monitores
+    elif opcion_menu == 2:
+        print('Estas en el menu de teclados')
+        cantidad_teclados = int(input('Cuantos teclados deseas comprar?'))
+        return  cantidad_teclados
+    elif opcion_menu == 3:
+        print('Estas en el menu de mouses')
+        cantidad_mouses = int(input('Cuantos mouses deseas comprar?'))
+        return cantidad_mouses
+    elif opcion_menu == 4:
+        print('Estas en el menu de audifonos')
+        cantidad_audifonos = int(input('Cuantos audifonos desea comprar?'))
+        return cantidad_audifonos
+    else:
+        print('Estas en el menu de microfonos')
+        cantidad_microfonos = int(input('Cuantos microfonos desea comprar?'))
+        return cantidad_microfonos
+
+
+
+# Main del programa
+while not accesoMain and intentos < 3:
+    input_Usuario = input("Introduzca su usuario")
+    input_Contrasena = input("Introduzca su contraseña")
+    if inicioSesion(input_Usuario, input_Contrasena):
+       accesoMain = True
+    else:
+        intentos = intentos + 1
+    if intentos < 3:
+        print('Lleva', intentos, 'intentos')
+    else:
+        print("Acceso denegado")
+
+while accesoMain:
+    inputMenu = int(input("Digite en base a los siguientes numeros el producto que desea adquirir:\n"
+                            "(1) Monitores\n"
+                            "(2) teclados\n"
+                            "(3) mouses\n"
+                            "(4) Audifonos\n"
+                            "(5) Microfonos\n"))
+    if 0 < inputMenu < 6:
+        accesoMain = False
+        menu(inputMenu)
+    else:
+        print('Elija una opcion del 1-5')
+    if inputMenu == 1:
+        if menu(inputMenu) < inventario_monitores:
+            inventario_monitores = inventario_mouses - menu(inputMenu)
+            print(inventario_monitores)
